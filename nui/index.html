@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Contract</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="app.js"></script>       
+    </head>
+    <body>
+        <div class="container">
+            <div class="title"> Purchase Contract</div>
+            <div class="seller">
+                <div class="seller-title">Seller</div>
+                <div class="seller-name">Name: <span id="seller-name"></span></div>
+                <div class="seller-identifier">ID: <span id="seller-identifier"></span></div>
+            </div>
+            <div class="buyer">
+                <div class="buyer-title">Buyer</div>
+                <div class="buyer-name">Name: <span id="buyer-name"></span></div>
+                <div class="buyer-identifier">ID: <span id="buyer-identifier"></span></div>
+                <!--input id-->
+                <input type="text" id="buyer-identifier-input" class="buyer-identifier-input" placeholder="ID">
+            </div>
+
+            <div class="vehicle">
+                <div class="vehicle-title">Vehicle</div>
+                <div class="vehicle-name">Model: <span id="vehicle-name"></span></div>
+                <div class="vehicle-plate">License Plate:
+                    <input type="text" id="vehicle-plate-input" class="vehicle-plate-input" placeholder="License Plate">
+                </div>
+                <div class="vehicle-price">Price: 
+                <input type="text" id="vehicle-price-input" class="vehicle-price-input" placeholder="Price">
+                </div>
+        </div>
+
+        <div class="buttons">
+            <button id="accept" class="accept">Accept</button>
+            <button id="cancel" class="cancel">Cancel</button>
+        </div>
+
+   
+    </body>
+</html>

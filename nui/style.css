@@ -1,0 +1,241 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+
+.container {
+    display: none;
+    position: absolute;
+    top: 5vh;
+    right: 5vh;
+    height: 80%;
+    width: 35%;
+    background-image: url('./img/contract.png');
+    background-size: 100% 100%;
+    z-index: 0;
+}
+
+.container .title {
+    position: absolute;
+    top: 6vh;
+    left: 10vh;
+    font-family: 'Roboto Slab', serif;
+    font-size: 4.0vh;
+    color: #000000;
+    z-index: 1;
+}
+
+.container .seller {
+    position: absolute;
+    top: 15vh;
+    left: 6vh;
+    width: 53vh;
+    height: 15vh;
+    font-family: 'Roboto Slab', serif;
+    font-size: 3.0vh;
+    color: #000000;
+    z-index: 1;
+}
+
+.container .seller .seller-title {
+    position: absolute;
+    top: 0vh;
+    left: 2vh;
+    font-family: 'Roboto Slab', 'serif';
+    font-size: 3.0vh;
+    color: #000000;
+    text-shadow: 0 2px 2px #000000;
+    z-index: 1;
+}
+
+.container .seller .seller-name {
+    position: absolute;
+    top: 5vh;
+    left: 2vh;
+    font-family: 'Roboto Slab', serif;
+    font-size: 2.0vh;
+    color: #000000;
+    z-index: 1;
+}
+
+.container .seller .seller-identifier {
+    position: absolute;
+    top: 10vh;
+    left: 2vh;
+    font-family: 'Roboto Slab', serif;
+    font-size: 2.0vh;
+    color: #000000;
+    z-index: 1;
+}
+
+.container .buyer {
+    position: absolute;
+    top: 30vh;
+    left: 6vh;
+    width: 53vh;
+    height: 15vh;
+    font-family: 'Roboto Slab', serif;
+    font-size: 3.0vh;
+    color: #000000;
+    z-index: 1;
+}
+
+.container .buyer .buyer-title {
+    position: absolute;
+    top: 0vh;
+    left: 2vh;
+    font-family: 'Roboto Slab', 'serif';
+    font-size: 3.0vh;
+    color: #000000;
+    text-shadow: 0 2px 2px #000000;
+    z-index: 1;
+}
+
+.container .buyer .buyer-name {
+    position: absolute;
+    top: 5vh;
+    left: 2vh;
+    font-family: 'Roboto Slab', serif;
+    font-size: 2.0vh;
+    color: #000000;
+    z-index: 1;
+}
+
+.container .buyer .buyer-identifier {
+    position: absolute;
+    top: 10vh;
+    left: 2vh;
+    font-family: 'Roboto Slab', serif;
+    font-size: 2.0vh;
+    color: #000000;
+    z-index: 1;
+}
+
+.container .buyer .buyer-identifier-input {
+    position: absolute;
+    top: 10vh;
+    right: 2vh;
+    font-family: 'Roboto Slab', serif;
+    font-size: 2.0vh;
+    width: 5vh;
+    color: #000000;
+    z-index: 1;
+}
+
+.container .vehicle {
+    position: absolute;
+    top: 45vh;
+    left: 6vh;
+    width: 53vh;
+    height: 20vh;
+    font-family: 'Roboto Slab', serif;
+    font-size: 3.0vh;
+    color: #000000;
+    z-index: 1;
+}
+
+.container .vehicle .vehicle-title {
+    position: absolute;
+    top: 0vh;
+    left: 2vh;
+    font-family: 'Roboto Slab', 'serif';
+    font-size: 3.0vh;
+    color: #000000;
+    text-shadow: 0 2px 2px #000000;
+    z-index: 1;
+}
+
+.container .vehicle .vehicle-name {
+    position: absolute;
+    top: 5vh;
+    left: 2vh;
+    font-family: 'Roboto Slab', serif;
+    font-size: 2.0vh;
+    color: #000000;
+    z-index: 1;
+}
+
+.container .vehicle .vehicle-plate {
+    position: absolute;
+    top: 10vh;
+    left: 2vh;
+    font-family: 'Roboto Slab', serif;
+    font-size: 2.0vh;
+    color: #000000;
+    z-index: 1;
+}
+
+.container .vehicle .vehicle-price {
+    position: absolute;
+    top: 15vh;
+    left: 2vh;
+    font-family: 'Roboto Slab', serif;
+    font-size: 2.0vh;
+    color: #000000;
+    z-index: 1;
+}
+
+
+.container .vehicle .vehicle-price-input {
+    position: absolute;
+    top: 0;
+    left: 10vh;
+    font-family: 'Roboto Slab', serif;
+    font-size: 2.0vh;
+    width: 20vh;
+    color: #000000;
+    z-index: 1;
+}
+
+.container .vehicle .vehicle-plate-input {
+    position: absolute;
+    top: 0;
+    left: 10vh;
+    font-family: 'Roboto Slab', serif;
+    font-size: 2.0vh;
+    width: 20vh;
+    color: #000000;
+    z-index: 1;
+}
+.container .buttons {
+    position: absolute;
+    bottom: 5vh;
+    left: 6vh;
+    width: 53vh;
+    height: auto;
+    font-family: 'Roboto Slab', serif;
+    font-size: 3.0vh;
+    align-items: center;
+    justify-content: center;
+    color: #000000;
+    z-index: 1;
+}
+
+.container .buttons .accept {
+    top: 0vh;
+    left: 0vh;
+    width: 10vh;
+    height: 3vh;
+    font-family: 'Roboto Slab', serif;
+    font-size: 2.0vh;
+    background-color: rgba(0, 255, 47, 0.485);
+    z-index: 1;
+}
+
+.container .buttons .accept:hover {
+    background-color: rgba(0, 255, 47, 0.73);
+    scale: 1.1;
+}
+
+.container .buttons .cancel {
+    top: 0vh;
+    left: 0vh;
+    width: 10vh;
+    height: 3vh;
+    font-family: 'Roboto Slab', serif;
+    font-size: 2.0vh;
+    background-color: rgba(255, 0, 8, 0.484);
+    z-index: 1;
+}
+
+.container .buttons .cancel:hover {
+    background-color: rgba(255, 0, 8, 0.73);
+    scale: 1.1;
+}
