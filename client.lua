@@ -32,10 +32,10 @@ RegisterNetEvent('hn-contract:client:OpenContract', function()
                 SetNuiFocus(true, true)
             end, player)
         else
-            QBCore.Functions.Notify('No estás en un vehículo', 'error')
+            QBCore.Functions.Notify('You are not in a vehicle', 'error')
         end
     else
-        QBCore.Functions.Notify('No hay jugadores cerca', 'error')
+        QBCore.Functions.Notify('No players nearby', 'error')
     end    
 
 end)
