@@ -11,7 +11,7 @@
 ## Authors
 ![Logo](https://i.imgur.com/a5rMYqb.png)
 
-- [@Lazarus-dev](https://github.com/hennus-dev)
+- [@hennus-dev](https://github.com/hennus-dev)
 - [@hakos](https://github.com/hakos47)
 
 
