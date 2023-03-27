@@ -20,7 +20,11 @@ RegisterNetEvent('hn-contract:server:Confirm', function(data)
     local Player = QBCore.Functions.GetPlayer(tonumber(data.buyer.id))
     local license = Player.PlayerData.license
     local PlayerSeller = QBCore.Functions.GetPlayer(tonumber(data.seller.id))
-    
+    if not data.vehicle.price then
+        TriggerClientEvent('QBCore:Notify', tonumber(data.buyer.id), 'la casilla del precio esta vacio.', 'error')
+        TriggerClientEvent('QBCore:Notify', tonumber(data.seller.id), 'la casilla del precio esta vacio.', 'error')
+        return
+    end
     if not Player.PlayerData.money.bank or  tonumber(Player.PlayerData.money.bank) < tonumber(data.vehicle.price) then
         TriggerClientEvent('QBCore:Notify', tonumber(data.buyer.id), 'No tienes suficiente dinero en el banco', 'error')
         return
@@ -31,12 +35,12 @@ RegisterNetEvent('hn-contract:server:Confirm', function(data)
    end
     
     exports.oxmysql:query("SELECT * FROM `player_vehicles` WHERE  `plate` = @plate", {
-        ['@plate'] = data.vehicle.plate
+        ['@plate'] = string.upper(data.vehicle.plate)
     }, function(result)
         if result[1] ~= nil then
             exports.oxmysql:query("UPDATE `player_vehicles` SET `citizenid` = @citizenid WHERE `plate` = @plate", {
                 ['@citizenid'] = data.buyer.citizenid,
-                ['@plate'] = data.vehicle.plate
+                ['@plate'] = string.upper(data.vehicle.plate)
             })
         else
             exports.oxmysql:query("INSERT INTO `player_vehicles` (`license`, `citizenid`, `vehicle`, `hash`, `mods`, `plate`, `garage`, `state`) VALUES(@license, @citizenid, @vehicle, @hash, @mods, @plate, @garage, @state)", {
@@ -46,7 +50,7 @@ RegisterNetEvent('hn-contract:server:Confirm', function(data)
                 ['@vehicle'] = string.lower(data.vehicle.model),
                 ['@hash'] = GetHashKey(data.vehicle.hash),
                 ['@mods'] = json.encode({}),
-                ['@plate'] = data.vehicle.plate,
+                ['@plate'] = string.upper(data.vehicle.plate),
                 ['@garage'] = 'pillboxgarage',
                 ['@state'] = 0,
             })

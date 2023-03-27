@@ -1,7 +1,5 @@
 fx_version 'cerulean'
 
-version "0.1.0"
-
 game 'gta5'
 
 client_scripts {

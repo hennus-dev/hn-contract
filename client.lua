@@ -32,10 +32,10 @@ RegisterNetEvent('hn-contract:client:OpenContract', function()
                 SetNuiFocus(true, true)
             end, player)
         else
-            QBCore.Functions.Notify('You are not in a vehicle', 'error')
+            QBCore.Functions.Notify('No estás en un vehículo', 'error')
         end
     else
-        QBCore.Functions.Notify('No players nearby', 'error')
+        QBCore.Functions.Notify('No hay jugadores cerca', 'error')
     end    
 
 end)
@@ -97,8 +97,8 @@ end)
 RegisterNUICallback('sendBuyer', function(data, cb)
     local vehicle = GetVehiclePedIsIn(PlayerPedId(), false)
     local plate = GetVehicleNumberPlateText(vehicle)
-    if plate ~= data.vehicle.plate then
-        SetVehicleNumberPlateText(vehicle, data.vehicle.plate)
+    if string.upper(plate) ~= string.upper(data.vehicle.plate) then
+        SetVehicleNumberPlateText(vehicle, string.upper(data.vehicle.plate))
         Wait(300)
         TriggerEvent("vehiclekeys:client:SetOwner",GetVehicleNumberPlateText(vehicle))
     end

@@ -18,12 +18,14 @@ window.addEventListener('message', function(event) {
    }
    $('.accept').click(function() {
         if(playerSeller) {
-            $.post('https://hn-contract-beta/sendBuyer', JSON.stringify(tempinfo), ()=>{
+            $.post('https://hn-contract/sendBuyer', JSON.stringify(tempinfo), ()=>{
                 close();
             })
         } else {
-            $.post('https://hn-contract-beta/accept', JSON.stringify(tempinfo))
+            $.post('https://hn-contract/accept', JSON.stringify(tempinfo))
+            document.getElementById('vehicle-price-input').value = null
             close();
+
         }
     })
 
@@ -32,7 +34,7 @@ window.addEventListener('message', function(event) {
 })
 
 close = ()=> {
-    $.post('https://hn-contract-beta/close', JSON.stringify({}))
+    $.post('https://hn-contract/close', JSON.stringify({}))
     $('.container').hide();
     document.getElementById('vehicle-plate-input').removeEventListener('change', handlerChange); // kill eventlistener
     document.getElementById('vehicle-price-input').removeEventListener('change', handlerChange); // kill eventlistener
@@ -60,11 +62,16 @@ open = (d)=> {
     document.getElementById('buyer-identifier-input').value = d.buyer.id;
     document.getElementById('vehicle-name').innerHTML = d.vehicle.model;
     document.getElementById('vehicle-plate-input').value = d.vehicle.plate;
-    if (d.vehicle.price) {
-        document.getElementById('vehicle-price-input').value = d.vehicle.price;
+   
+    if (!playerSeller){
+        if (d.vehicle.price) {
+            document.getElementById('vehicle-price-input').value = d.vehicle.price;
+        }
+    } else {
+        document.getElementById('vehicle-price-input').value = null
     }
     document.getElementById('vehicle-price-input').readOnly = !playerSeller;
-    document.getElementById('vehicle-plate-input').readOnly //= !playerSeller;
+    document.getElementById('vehicle-plate-input').readOnly = !playerSeller;
     document.getElementById('buyer-identifier-input').readOnly = !playerSeller;
     document.getElementById('vehicle-price-input').addEventListener('change', function() {
         tempinfo.vehicle.price = this.value
@@ -74,7 +81,7 @@ open = (d)=> {
     })
     
     document.getElementById('buyer-identifier-input').addEventListener('change', function() {
-        $.post('https://hn-contract-beta/identifier', JSON.stringify({
+        $.post('https://hn-contract/identifier', JSON.stringify({
             id: this.value
         }), (info) => {
             if (!info) return
