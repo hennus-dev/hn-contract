@@ -48,7 +48,7 @@ RegisterNetEvent('hn-contract:server:Confirm', function(data)
                 -- event notify
                 TriggerClientEvent('QBCore:Notify', tonumber(data.buyer.id), 'Este vehiculo no es tuyo', 'error')
             end
-        elseif Config.AddNewCars and QBCore.Functions.HasPermission(tonumber(data.seller.id), 'admin') then
+        elseif Config.AddNewCars and QBCore.Functions.HasPermission(tonumber(data.seller.id), Config.Permission) then
             
             if Player.Functions.RemoveMoney('bank', tonumber(data.vehicle.price), 'contract') then
                 PlayerSeller.Functions.AddMoney('bank', tonumber(data.vehicle.price), 'contract')
