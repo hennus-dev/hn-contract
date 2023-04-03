@@ -1,8 +1,17 @@
 
-## Developing
+# version 1.1.0
+
 ## Screenshots
 
 ![App Screenshot](https://cdn.discordapp.com/attachments/1084558967813967885/1088133441410834452/image.png)
+
+## Confgiuration 
+
+```lua
+    Config = {}
+    Config.AddNewCars = true -- admin permissions can add cars even if they don't allow other players
+    Config.Permission = 'admin'
+```
 
 
 ## Dependencies

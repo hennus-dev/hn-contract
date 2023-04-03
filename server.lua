@@ -29,20 +29,31 @@ RegisterNetEvent('hn-contract:server:Confirm', function(data)
         TriggerClientEvent('QBCore:Notify', tonumber(data.buyer.id), 'No tienes suficiente dinero en el banco', 'error')
         return
     end
-   if Player.Functions.RemoveMoney('bank', tonumber(data.vehicle.price), 'contract') then
-        PlayerSeller.Functions.AddMoney('bank', tonumber(data.vehicle.price), 'contract')
-        PlayerSeller.Functions.RemoveItem('contract', 1)
-   end
     
     exports.oxmysql:query("SELECT * FROM `player_vehicles` WHERE  `plate` = @plate", {
         ['@plate'] = string.upper(data.vehicle.plate)
     }, function(result)
         if result[1] ~= nil then
-            exports.oxmysql:query("UPDATE `player_vehicles` SET `citizenid` = @citizenid WHERE `plate` = @plate", {
-                ['@citizenid'] = data.buyer.citizenid,
-                ['@plate'] = string.upper(data.vehicle.plate)
-            })
-        else
+            
+            if PlayerSeller.PlayerData.citizenid == result[1].citizenid then
+                if Player.Functions.RemoveMoney('bank', tonumber(data.vehicle.price), 'contract') then
+                    PlayerSeller.Functions.AddMoney('bank', tonumber(data.vehicle.price), 'contract')
+                    PlayerSeller.Functions.RemoveItem('contract', 1)
+                end
+                exports.oxmysql:query("UPDATE `player_vehicles` SET `citizenid` = @citizenid WHERE `plate` = @plate", {
+                    ['@citizenid'] = data.buyer.citizenid,
+                    ['@plate'] = string.upper(data.vehicle.plate)
+                })
+            else
+                -- event notify
+                TriggerClientEvent('QBCore:Notify', tonumber(data.buyer.id), 'Este vehiculo no es tuyo', 'error')
+            end
+        elseif Config.AddNewCars and QBCore.Functions.HasPermission(tonumber(data.seller.id), Config.Permission) then
+            
+            if Player.Functions.RemoveMoney('bank', tonumber(data.vehicle.price), 'contract') then
+                PlayerSeller.Functions.AddMoney('bank', tonumber(data.vehicle.price), 'contract')
+                PlayerSeller.Functions.RemoveItem('contract', 1)
+            end
             exports.oxmysql:query("INSERT INTO `player_vehicles` (`license`, `citizenid`, `vehicle`, `hash`, `mods`, `plate`, `garage`, `state`) VALUES(@license, @citizenid, @vehicle, @hash, @mods, @plate, @garage, @state)", {
                 ['@license'] = license,
                 ['@citizenid'] = data.buyer.citizenid,
@@ -54,6 +65,9 @@ RegisterNetEvent('hn-contract:server:Confirm', function(data)
                 ['@garage'] = 'pillboxgarage',
                 ['@state'] = 0,
             })
+        else
+            -- evetn notify
+            TriggerClientEvent('QBCore:Notify', tonumber(data.buyer.id), 'Este vehiculo no esta registrado en la base de datos', 'error')
         end
     end)
 end)
