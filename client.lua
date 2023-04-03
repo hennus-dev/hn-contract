@@ -1,5 +1,13 @@
 QBCore = exports['qb-core']:GetCoreObject()
 
+local function getVehicleFromVehList(hash)
+	for _, v in pairs(QBCore.Shared.Vehicles) do
+		if hash == v.hash then
+			return v.model
+		end
+	end
+end
+
 RegisterNetEvent('hn-contract:client:OpenContract', function()
     local player = GetClosestPlayer()
     if player ~= nil then
@@ -7,7 +15,11 @@ RegisterNetEvent('hn-contract:client:OpenContract', function()
         local vehicle = GetVehiclePedIsIn(PlayerPedId(), false)
         if vehicle  and vehicle ~= 0 then
             local plate = GetVehicleNumberPlateText(vehicle)
-            local model = GetDisplayNameFromVehicleModel(GetEntityModel(vehicle))
+            local ped = PlayerPedId()
+            local veh = GetVehiclePedIsIn(ped)
+            local props = QBCore.Functions.GetVehicleProperties(veh)
+            local hash = props.model
+            local model = getVehicleFromVehList(hash)
             local data = {}
             data.vehicle = {
                 plate = plate,
